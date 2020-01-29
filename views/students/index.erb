@@ -1,9 +1,24 @@
-<h1>All The Students</h1>
+
+
+
+<table>
+  <caption><h1>All The Students</h1></caption>
+<tr>
+  <th>First Name</th>
+  <th>Last Name</th>
+  <th>Age</th>
+  <th>House</th>
+  <th>More Details</th>
+</tr>
+<% for student in @students %>
+<tr>
+  <td><%= student.first_name %></td>
+  <td><%= student.last_name %></td>
+  <td><%= student.age %></td>
+  <td><%= student.house.name %></td>
+  <td><a href="/students/<%=student.id%>"><button>Details</button></a></td>
+</tr>
+<% end %>
+</table>
 
 <a href="/students/new"><p>Add Student</p></a>
-
-<% for student in @students %>
-<ul>
-  <li><a href="/students/<%=student.id%>"><%= student.first_name %> </a></li>
-</ul>
-<% end %>

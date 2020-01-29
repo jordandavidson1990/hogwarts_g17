@@ -1,11 +1,12 @@
 require( 'sinatra' )
 require( 'sinatra/contrib/all' )
-require( 'pry-byebug' )
+# require( 'pry' )
 require_relative('./models/student')
+require_relative('./models/house')
 also_reload('./models/*')
 
 get '/' do
-  erb(:'students/home')
+  erb(:home)
 end
 
 get '/students' do
@@ -14,6 +15,7 @@ get '/students' do
 end
 
 get '/students/new' do
+  @houses = House.all()
   erb(:'/students/new')
 end
 
@@ -23,8 +25,22 @@ post '/students' do
   redirect(:'/students')
 end
 
+get '/students/:id/edit' do
+  @student = Student.find_by_id(params[:id])
+  @houses = House.all()
+  erb(:'/students/edit')
+end
+
 
 get '/students/:id' do
   @student = Student.find_by_id(params[:id])
   erb(:'/students/show')
+end
+
+
+# Houses
+
+get '/houses' do
+  @houses = House.all()
+  erb(:'/houses/index')
 end
