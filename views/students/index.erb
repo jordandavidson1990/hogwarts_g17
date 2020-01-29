@@ -1,0 +1,9 @@
+<h1>All The Students</h1>
+
+<a href="/students/new"><p>Add Student</p></a>
+
+<% for student in @students %>
+<ul>
+  <li><a href="/students/<%=student.id%>"><%= student.first_name %> </a></li>
+</ul>
+<% end %>
